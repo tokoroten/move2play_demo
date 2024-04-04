@@ -3,8 +3,6 @@ let accSize = 0.0;
 const maxEnergy = 100;
 
 function getAccel(event) {
-    console.log("getAccel");
-
     // 加速度の大きさを計算する
     accSize = Math.sqrt(
         event.acceleration.x * event.acceleration.x +
@@ -19,7 +17,11 @@ function updateEnergy() {
         energy = maxEnergy;
     }
     document.getElementById("energy").textContent = energy.toFixed(1) + "%";
+
+    document.getElementById("acc").textContent = accSize.toFixed(1) + "m/s^2";
 }
+
+
 
 function countDown()
 {

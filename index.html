@@ -3,6 +3,7 @@
 <head>
     <title>Move2Play_demo</title>
     <script src="move2play.js"></script>
+    <meta charset="utf-8">
 </head>
 <body>
     <video
@@ -10,7 +11,15 @@
         src="https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
         autoplay loop playsinline>
     </video>
-    <div id="energy">0%</div>
+    <div>
+        <span>エナジー（再生可能秒数）</span>
+        <span id="energy">0%</span>
+    </div>
+    <div>
+        <span>加速度</span>
+        <span id="acc">0</span>
+    </div>
+    
     <button id="addButton">+</button>
 </body>
 </html>
