@@ -5,18 +5,12 @@ const maxEnergy = 100;
 function getAccel(event) {
     console.log("getAccel");
 
-    // 重力加速度を取得する
-    let gravity = event.accelerationIncludingGravity;
-
-    // 重力加速度を取り除く
-    let acc = {
-        x: gravity.x - event.acceleration.x,
-        y: gravity.y - event.acceleration.y,
-        z: gravity.z - event.acceleration.z
-    };
-
     // 加速度の大きさを計算する
-    accSize = Math.sqrt(acc.x*acc.x + acc.y*acc.y + acc.z*acc.z);
+    accSize = Math.sqrt(
+        event.acceleration.x * event.acceleration.x +
+        event.acceleration.y * event.acceleration.y +
+        event.acceleration.z * event.acceleration.z
+    );
 }
 
 function updateEnergy() {
@@ -24,7 +18,7 @@ function updateEnergy() {
     if (energy >= maxEnergy) {
         energy = maxEnergy;
     }
-    document.getElementById("energy").textContent = energy.toFixed(2) + "%";
+    document.getElementById("energy").textContent = energy.toFixed(1) + "%";
 }
 
 function countDown()
@@ -33,8 +27,8 @@ function countDown()
     const videotag = document.getElementById("video");
 
     // 加速度が5 ms^2 であれば、運動中と判定してエナジーを追加
-    if (accSize > 5.0) {
-        energy += 0.3;
+    if (accSize > 1.0) {
+        energy += 0.5;
     } else {
         // エナジー消費
         energy -= 0.1;
