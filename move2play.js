@@ -37,7 +37,7 @@ function countDown()
 
     // 加速度が3 ms^2 であれば、運動中と判定してエナジーを追加
     if (accSize > accThreshold) {
-        energy += 0.5;
+        energy += 0.3;
     } else {
         // エナジー消費
         energy -= 0.1;
