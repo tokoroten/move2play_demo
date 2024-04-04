@@ -9,16 +9,16 @@ function getAccel(event) {
 
     // 重力加速度を取り除く
     let acc = {
-        x: event.acceleration.x - gravity.x,
-        y: event.acceleration.y - gravity.y,
-        z: event.acceleration.z - gravity.z
+        x: gravity.x - event.acceleration.x,
+        y: gravity.y - event.acceleration.y,
+        z: gravity.z - event.acceleration.z
     };
 
     // 加速度の大きさを計算する
     let accSize = Math.sqrt(acc.x*acc.x + acc.y*acc.y + acc.z*acc.z);
 
     // エネルギーを加算する
-    energy += accSize / 10.0;
+    energy += accSize / 10000.0;
     updateEnergy();
 }
 
@@ -27,7 +27,7 @@ function updateEnergy() {
     if (energy >= maxEnergy) {
         energy = maxEnergy;
     }
-    document.getElementById("energy").textContent = energy + "%";
+    document.getElementById("energy").textContent = energy.toFixed(2) + "%";
 }
 
 function countDown()
@@ -35,7 +35,7 @@ function countDown()
     console.log("countDown");
     const videotag = document.getElementById("video");
 
-    energy -= 1.0;
+    energy -= 0.1;
     if (energy <= 0) {
         energy = 0;
         videotag.pause();
@@ -55,5 +55,5 @@ function addEnery(event) {
 window.onload = () => {
     window.addEventListener("devicemotion", getAccel);
     document.getElementById("addButton").addEventListener("click", addEnery);
-    setInterval(countDown, 1000);
+    setInterval(countDown, 100);
 }
