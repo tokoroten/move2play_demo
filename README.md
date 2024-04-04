@@ -3,5 +3,4 @@
 - 動いているとエナジーが回復する
 - エナジーを消費して動画が再生される
 
-https://github.com/tokoroten/move2play_demo
-
+https://tokoroten.github.io/move2play_demo/
