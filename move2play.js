@@ -18,7 +18,7 @@ function getAccel(event) {
     let accSize = Math.sqrt(acc.x*acc.x + acc.y*acc.y + acc.z*acc.z);
 
     // エネルギーを加算する
-    energy += accSize / 10000.0;
+    energy += accSize / 1000000.0;
     updateEnergy();
 }
 
