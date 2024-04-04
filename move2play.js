@@ -1,4 +1,4 @@
-let energy = 0;
+let energy = 0.0;
 let accSize = 0.0;
 const maxEnergy = 100;
 
@@ -17,8 +17,7 @@ function updateEnergy() {
         energy = maxEnergy;
     }
     document.getElementById("energy").textContent = energy.toFixed(1) + "%";
-
-    document.getElementById("acc").textContent = accSize.toFixed(1) + "m/s^2";
+    document.getElementById("acc").textContent = accSize.toFixed(3) + "m/s^2";
 }
 
 
@@ -28,7 +27,7 @@ function countDown()
     console.log("countDown");
     const videotag = document.getElementById("video");
 
-    // 加速度が5 ms^2 であれば、運動中と判定してエナジーを追加
+    // 加速度が1 ms^2 であれば、運動中と判定してエナジーを追加
     if (accSize > 1.0) {
         energy += 0.5;
     } else {
