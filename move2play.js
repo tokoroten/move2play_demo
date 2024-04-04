@@ -1,4 +1,5 @@
 let energy = 0;
+let accSize = 0.0;
 const maxEnergy = 100;
 
 function getAccel(event) {
@@ -15,11 +16,7 @@ function getAccel(event) {
     };
 
     // 加速度の大きさを計算する
-    let accSize = Math.sqrt(acc.x*acc.x + acc.y*acc.y + acc.z*acc.z);
-
-    // エネルギーを加算する
-    energy += accSize / 1000000.0;
-    updateEnergy();
+    accSize = Math.sqrt(acc.x*acc.x + acc.y*acc.y + acc.z*acc.z);
 }
 
 function updateEnergy() {
@@ -35,7 +32,14 @@ function countDown()
     console.log("countDown");
     const videotag = document.getElementById("video");
 
-    energy -= 0.1;
+    // 加速度が5 ms^2 であれば、運動中と判定してエナジーを追加
+    if (accSize > 5.0) {
+        energy += 0.3;
+    } else {
+        // エナジー消費
+        energy -= 0.1;
+    }
+
     if (energy <= 0) {
         energy = 0;
         videotag.pause();
