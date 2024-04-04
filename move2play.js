@@ -59,21 +59,27 @@ function addEnery(event) {
     updateEnergy();
 }
 
+
 window.onload = () => {
     document.getElementById("addButton").addEventListener("click", addEnery);
     setInterval(countDown, 100);
 
-    // request permission
-    if (typeof DeviceMotionEvent.requestPermission === 'function') {
-        DeviceMotionEvent.requestPermission()
-            .then(permissionState => {
-                if (permissionState === 'granted') {
-                    window.addEventListener("devicemotion", getAccel);
-                }
-            })
-            .catch(console.error);
-    } else {
-        // handle regular non iOS 13+ devices
-        window.addEventListener("devicemotion", getAccel);
-    }
+    document.getElementById("takePermission").addEventListener("click", (event) => {
+        if (DeviceMotionEvent &&
+            DeviceMotionEvent.requestPermission &&
+            typeof DeviceMotionEvent.requestPermission === 'function') {
+            DeviceMotionEvent.requestPermission()
+                .then(permissionState => {
+                    if (permissionState === 'granted') {
+                        window.addEventListener("devicemotion", getAccel);
+                    }
+                })
+                .catch(console.error);
+        } else {
+            // handle regular non iOS 13+ devices
+            // donothing
+        }
+    });
+
+    window.addEventListener("devicemotion", getAccel);
 }
